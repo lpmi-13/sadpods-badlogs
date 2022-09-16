@@ -1,8 +1,8 @@
-extern crate chrono;
 use chrono::Utc;
 use std::io::Write;
 use std::fs::OpenOptions;
 use std::{thread, time};
+use rand::{self,Rng};
 
 fn main() {
     let file_path = "/var/log/badrust.log";
@@ -17,7 +17,9 @@ fn main() {
     loop {
         let dt = Utc::now().naive_utc();
         let timestamp: i64 = dt.timestamp();
-        let message = timestamp.to_string() + " this is a log file entry\n";
+        let mut rng = rand::thread_rng();
+        let token_value = rng.gen_range(100000..999999);
+        let message = timestamp.to_string() + " token: " + &token_value.to_string() + "\n";
 
         file.write_all(message.as_bytes());
         thread::sleep(one_second);

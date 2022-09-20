@@ -5,7 +5,7 @@ import random
 import time
 from datetime import datetime
 
-f = open('/var/log/bad.log', 'a')
+f = open('/var/log/badpython.log', 'a')
 while True:
   r = random.randrange(2147483647)
   f.write(str(datetime.now()) + ' token: ' + str(r) + '\n')

@@ -1,7 +1,7 @@
 tasks:
 
   - name: set permissions for log directory
-    init: sudo chown $(whoami):$(whoami) -R /var/log
+    init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad{python,golang,rust}.log
 
   - name: start the python process
     init: bash randomize_suspects.sh

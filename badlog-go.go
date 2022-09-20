@@ -15,9 +15,9 @@ func main() {
 
 func writeToLog() {
 	rand.Seed(time.Now().UnixNano())
-	number := rand.Intn(9147483647-1147483647) + 1147483647
+	number := rand.Intn(9999999999-1111111111) + 1111111111
 
-	message := (time.Time.String(time.Now()) + " token: " + strconv.Itoa(number) + "\n")
+	message := time.Now().Format(time.RFC3339) + " token: " + strconv.Itoa(number) + "\n"
 
 	VERBOSE_LOGS := os.Getenv("GOLANG_LOG")
 	shouldWrite, err := strconv.ParseBool(VERBOSE_LOGS)

@@ -11,7 +11,7 @@ VERBOSE_LOGS = os.getenv('PYTHON_LOG', '0')
 if VERBOSE_LOGS == '1':
     f = open('/var/log/badpython.log', 'a')
     while True:
-        r = random.randrange(2147483647)
+        r = random.randrange(1111111111, 9999999999)
         f.write(str(datetime.now()) + ' token: ' + str(r) + '\n')
         f.flush()
         time.sleep(1)

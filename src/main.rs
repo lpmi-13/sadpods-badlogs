@@ -1,4 +1,5 @@
-use chrono::Utc;
+use chrono::{DateTime,Utc};
+use std::time::SystemTime;
 use std::env;
 use std::io::Write;
 use std::fs::OpenOptions;
@@ -19,10 +20,11 @@ fn main() {
     let one_second = time::Duration::from_millis(1000);
 
     loop {
-        let dt = Utc::now().naive_utc();
-        let timestamp: i64 = dt.timestamp();
+        let now = SystemTime::now();
+        let now: DateTime<Utc> = now.into();
+        let timestamp = now.to_rfc3339();
         let mut rng = rand::thread_rng();
-        let token_value = rng.gen_range(100000..999999);
+        let token_value:i64 = rng.gen_range(1111111111..9999999999);
         let message = timestamp.to_string() + " token: " + &token_value.to_string() + "\n";
 
         if should_log {

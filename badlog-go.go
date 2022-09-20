@@ -19,15 +19,22 @@ func writeToLog() {
 
 	message := (time.Time.String(time.Now()) + " token: " + strconv.Itoa(number) + "\n")
 
-	f, err := os.OpenFile("/var/log/badgolang.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	VERBOSE_LOGS := os.Getenv("GOLANG_LOG")
+	shouldWrite, err := strconv.ParseBool(VERBOSE_LOGS)
 	if err != nil {
 		panic(err)
 	}
-	if _, err := f.Write([]byte(message)); err != nil {
-		panic(err)
-	}
-	if err := f.Close(); err != nil {
-		panic(err)
+	if shouldWrite {
+		f, err := os.OpenFile("/var/log/badgolang.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+		if err != nil {
+			panic(err)
+		}
+		if _, err := f.Write([]byte(message)); err != nil {
+			panic(err)
+		}
+		if err := f.Close(); err != nil {
+			panic(err)
+		}
 	}
 
 	time.Sleep(time.Second)

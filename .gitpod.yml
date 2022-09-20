@@ -1,18 +1,17 @@
 tasks:
 
   - name: set permissions for log directory
-    init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad{python,golang,rust}.log
+    init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad{node,python,golang,rust}.log
+    command: exit
 
   - name: start the python process
     init: bash randomize_suspects.sh
     command: sleep 5 && python badlog-python.py
 
-    # we'll need to compile the go binary somewhere...
   - name: start the golang process
     init: go build -o badlog-golang badlog-go.go
     command: sleep 5 && ./badlog-golang
 
-    # we'll need to compile the rust binary somewhere...
   - name: start the rust process
     init: cargo build
     command: sleep 5 && ./target/debug/badlog-rust

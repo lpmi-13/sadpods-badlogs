@@ -15,7 +15,7 @@ tasks:
     # we'll need to compile the rust binary somewhere...
   - name: start the rust process
     init: cargo build
-    command: sleep 5 && ./badlog-rust
+    command: sleep 5 && ./target/debug/badlog-rust
 
   - name: bad log file investigation
     command: echo "let's start the investigation!"

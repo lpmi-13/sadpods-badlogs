@@ -1,16 +1,24 @@
 tasks:
+
+  - name: set permissions for log directory
+    init: sudo chown $(whoami):$(whoami) -R /var/log
+
   - name: start the python process
     init: bash randomize_suspects.sh
     command: sleep 5 && python badlog-python.py
+
     # we'll need to compile the go binary somewhere...
   - name: start the golang process
     init: go build -o badlog-golang badlog-go.go
     command: sleep 5 && ./badlog-golang
+
     # we'll need to compile the rust binary somewhere...
   - name: start the rust process
     init: cargo build
     command: sleep 5 && ./badlog-rust
+
   - name: bad log file investigation
     command: echo "let's start the investigation!"
+
   #- name: delete the evidence
   #  command: sleep 5 && rm .env.suspects && exit

@@ -1,27 +1,27 @@
 tasks:
 
   - name: set permissions for log directory
-    init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad{node,python,golang,rust}.log
+    init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad.log
     command: exit
 
   - name: start the first python process
     init: bash randomize_suspects.sh
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+    command: sleep 2 && export $(sed -n '1p' .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: start the second python process
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+    command: sleep 2 && export $(sed -n '2p' .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: start the third python process
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+    command: sleep 2 && export $(sed -n '3p' .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: start the fourth python process
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+    command: sleep 2 && export $(sed -n '4p' .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: start the fifth python process
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+    command: sleep 2 && export $(sed -n '5p' .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: bad log file investigation
     command: echo "let's start the investigation!"
 
   #- name: delete the evidence
-  #  command: sleep 5 && rm .env.suspects && exit
+  #  command: sleep 2 && rm .env.suspects && exit

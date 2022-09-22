@@ -2,6 +2,6 @@
 shuf .env.suspects > .env.suspects.tmp && mv .env.suspects.tmp .env.suspects
 count=1
 for number in 1 2 3 4 5; do
-  sed -i "${count} s/./${number}_LOG=&/" .env.suspects
+  sed -i "${count} s/./LOG_LEVEL=&/" .env.suspects
   (( count++ ))
 done < .env.suspects

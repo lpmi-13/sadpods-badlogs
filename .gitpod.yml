@@ -4,20 +4,21 @@ tasks:
     init: sudo chown $(whoami):$(whoami) -R /var/log && touch /var/log/bad{node,python,golang,rust}.log
     command: exit
 
-  - name: start the python process
+  - name: start the first python process
     init: bash randomize_suspects.sh
     command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
-  - name: start the golang process
-    init: go build -o badlog-golang badlog-go.go
-    command: sleep 5 && export $(grep -i golang .env.suspects | xargs) && (nohup ./badlog-golang &) && exit
+  - name: start the second python process
+    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
-  - name: start the rust process
-    init: cargo build
-    command: sleep 5 && export $(grep -i rust .env.suspects | xargs) && (nohup ./target/debug/badlog-rust &) && exit
+  - name: start the third python process
+    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
-  - name: start the node process
-    command: sleep 5 && export $(grep -i node .env.suspects | xargs) && (nohup node badlog-node.js &) && exit
+  - name: start the fourth python process
+    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
+
+  - name: start the fifth python process
+    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: bad log file investigation
     command: echo "let's start the investigation!"

@@ -6,18 +6,18 @@ tasks:
 
   - name: start the python process
     init: bash randomize_suspects.sh
-    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && nohup python badlog-python.py & && exit
+    command: sleep 5 && export $(grep -i python .env.suspects | xargs) && (nohup python badlog-python.py &) && exit
 
   - name: start the golang process
     init: go build -o badlog-golang badlog-go.go
-    command: sleep 5 && export $(grep -i golang .env.suspects | xargs) && nohup ./badlog-golang & && exit
+    command: sleep 5 && export $(grep -i golang .env.suspects | xargs) && (nohup ./badlog-golang &) && exit
 
   - name: start the rust process
     init: cargo build
-    command: sleep 5 && export $(grep -i rust .env.suspects | xargs) && nohup ./target/debug/badlog-rust & && exit
+    command: sleep 5 && export $(grep -i rust .env.suspects | xargs) && (nohup ./target/debug/badlog-rust &) && exit
 
   - name: start the node process
-    command: sleep 5 && export $(grep -i node .env.suspects | xargs) && nohup node badlog-node.js & && exit
+    command: sleep 5 && export $(grep -i node .env.suspects | xargs) && (nohup node badlog-node.js &) && exit
 
   - name: bad log file investigation
     command: echo "let's start the investigation!"

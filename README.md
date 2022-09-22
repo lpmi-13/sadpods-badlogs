@@ -4,7 +4,7 @@ Inspired by the amazing [sad servers](https://sadservers.com), this is an attemp
 
 ## Run in Gitpod
 
-You can run this entirely in gitpod if you want.
+This is intended to run this entirely in gitpod, so please run it there.
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/lpmi-13/sadpods)
 

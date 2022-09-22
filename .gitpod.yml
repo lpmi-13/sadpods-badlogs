@@ -23,5 +23,5 @@ tasks:
   - name: bad log file investigation
     command: echo "let's start the investigation!"
 
-  #- name: delete the evidence
-  #  command: sleep 2 && rm .env.suspects && exit
+  - name: delete the evidence
+    command: sleep 5 && rm .env.suspects && exit

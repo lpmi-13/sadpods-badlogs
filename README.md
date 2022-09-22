@@ -10,4 +10,4 @@ You can run this entirely in gitpod if you want.
 
 ## First exercise
 
-Find the process that's writing to `/var/log/bad.log` and stop it. There are three that are running (one python, one golang, and one rust), and each startup randomizes which one is writing to that particular log file.
+Find the process that's writing to `/var/log/bad.log` and stop it. There are five that are running (each a copy of a python script), and each startup randomizes which one is writing to that particular log file.
